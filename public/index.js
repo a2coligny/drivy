@@ -36,8 +36,23 @@ var cars = [{
        
   }
 
+// calcul of the rules for price 
+ function priceRules(var price, var timeRental){
+ 
+      if ((timeRental > 1 ) && (timeRental < 5))
+      {
+        price = 0.9 * price; 
+      }
+      else if ((timeRental > 4) && (timeRental < 11))
+      {
+        price = 0.7 * price; 
+      }
+      else if (timeRental > 12) 
+      {
+        price = 0.5 * price; 
+      }
 
-  
+}
 
 
 
