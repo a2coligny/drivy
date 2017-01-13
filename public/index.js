@@ -17,6 +17,31 @@ var cars = [{
   'pricePerKm': 0.45
 }];
 
+// calcul of the price of rentals - Ex 1 
+
+  for var rental of rentals 
+  {
+    for var car of cars 
+       {
+        if ( car.carId == rental.carId)
+        {
+
+        time = rental.returnDate - rental.pickupDate;
+        time = time * car.pricePerDay;
+        distance = distance * car.pricePerKm;
+        price = time + distance;
+
+        }
+       }
+       
+  }
+
+
+  
+
+
+
+
 //list of rentals
 //useful for ALL exercises
 //The `price` is updated from exercice 1
@@ -164,6 +189,9 @@ var rentalModifications = [{
   'rentalId': '3-sa-92',
   'pickupDate': '2015-12-05'
 }];
+
+
+
 
 console.log(cars);
 console.log(rentals);
