@@ -19,41 +19,101 @@ var cars = [{
 
 // calcul of the price of rentals - Ex 1 
 
-  for var rental of rentals 
-  {
-    for var car of cars 
-       {
-        if ( car.carId == rental.carId)
+
+
+  rentals.forEach(function(rental){
+    cars.forEach(function(car){
+
+        if ( car.id == rental.carId)
         {
 
-        time = rental.returnDate - rental.pickupDate;
-        time = time * car.pricePerDay;
-        distance = distance * car.pricePerKm;
-        price = time + distance;
+        var date1 = new Date(rental.pickupDate);
+        var date2 = new Date(rental.returnDate);
 
+        var time = date2.getDate() - date1.getDate()+1;
+
+        var priceTime = time * car.pricePerDay;
+
+        var priceDistance = rental.distance * car.pricePerKm;
+
+        rental.price = priceTime + priceDistance;
         }
-       }
+       })
        
-  }
+  });
 
-// calcul of the rules for price 
- function priceRules(var price, var timeRental){
- 
-      if ((timeRental > 1 ) && (timeRental < 5))
-      {
-        price = 0.9 * price; 
-      }
-      else if ((timeRental > 4) && (timeRental < 11))
-      {
-        price = 0.7 * price; 
-      }
-      else if (timeRental > 12) 
-      {
-        price = 0.5 * price; 
-      }
+// EX 2 calcul of the rules for price 
 
+ rentals.forEach(function(rental){
+    cars.forEach(function(car){
+
+        if ( car.id == rental.carId)
+        {
+
+        var date1 = new Date(rental.pickupDate);
+        var date2 = new Date(rental.returnDate);
+
+        var time = date2.getDate() - date1.getDate()+1;
+
+        var priceTime = time * car.pricePerDay;
+    
+    if ((time > 10))
+    {
+      priceTime = 0.5 * priceTime; 
+    }
+    else if ((time > 4))
+    {
+      priceTime = 0.7 * priceTime; 
+    }
+    else if (time > 1) 
+    {
+      priceTime = 0.9 * priceTime; 
+    }
+
+        var priceDistance = rental.distance * car.pricePerKm;
+
+        rental.price = priceTime + priceDistance;
+    
+        }
+       })
+       
+  });
+
+//EX 3  Calcul of commmssions 
+function calculCommission(var price){
+ var commission = 0.3 * price; // définir var à l'extérieur de la function ? 
+ return commission;
 }
 
+function calculInsurance(var commission){
+ var insurance = 0.5 * commission ; 
+ retrun insurance; 
+}
+
+function calculAssistance ( var returnDate, var pickupDate ){
+var assistance = 1* (returnDate - pickupDate );
+return assistance;
+}
+
+function calculDrivy(// à r){
+var drivy = commision - (insurance + assistance);
+return drivy;
+}
+
+// EX 4 - The deductible 
+
+function deductible (var price, var drivy)
+{
+  if (deductibleReduction == true )
+  {
+     additionalCharge = (returnDate - pickupDate) * 4; 
+  }
+ drivy += additionalCharge;
+ price = price + additionalCharge;
+  return price;
+}
+
+// Ex 5 - pay the actor 
 
 
 
